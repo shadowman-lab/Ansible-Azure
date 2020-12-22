@@ -1,0 +1,48 @@
+- name: Gather Storage Accounts
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    storageaccountnames: []
+
+  collections:
+    - azure.azcollection
+
+  tasks: 
+
+    - name: Get facts for all storage accounts
+      azure_rm_storageaccount_info:
+        resource_group: Demo
+      register: storageaccount
+      
+    - name: Gather storage account names
+      set_fact:
+        storageaccountnames: "{{ storageaccountnames }} + [ '{{ item.name }}' ]"
+      loop: "{{ storageaccount.storageaccounts }}"
+      when: storageaccount != []
+
+    - name: Sync with Gitrepo      
+      git:
+        repo: 'https://github.com/shadowman-lab/Ansible-Demo-Customer.git'
+        dest: /home/git
+      delegate_to: tower.shadowman.dev
+
+    - name: Save Master Storage Account
+      copy:
+        content: "storage_account: {{ storageaccountnames }}"
+        dest: "/home/git/vars/storage_account.yml"
+      delegate_to: tower.shadowman.dev
+
+    - name: Update git repo with new master storage account
+      shell: git add * && git commit -m "Adding new master storage account to repo" && git push ||  /bin/true
+      args:
+        chdir: /home/git
+      delegate_to: tower.shadowman.dev
+      register: result
+      changed_when: '"Adding new master storage account to repo" in result.stdout'
+
+    
+      
+
+
+      

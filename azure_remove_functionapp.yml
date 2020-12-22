@@ -1,0 +1,15 @@
+- name: Remove Functionapp in Azure
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  collections:
+    - azure.azcollection
+  
+  tasks:
+
+  - name: Remove Functionapp
+    azure_rm_functionapp:
+      name: "{{ functionapp_name }}"
+      state: absent
+      resource_group: "{{ resource_group_name }}"

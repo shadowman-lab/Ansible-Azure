@@ -1,0 +1,14 @@
+- name: Provision storage account in Azure
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  collections:
+    - azure.azcollection
+  
+  tasks:
+  - name: Provision Storage Account
+    azure_rm_storageaccount:
+      resource_group: "{{ resource_group_name }}"
+      name: "{{ storage_account_name }}"
+      type: Standard_RAGRS

@@ -1,0 +1,6 @@
+- name: Remove Resouce Group
+  azure_rm_resourcegroup:
+    name: "{{ item }}"
+    state: absent
+    force_delete_nonempty: yes
+  loop: "{{ resource_group_name }}"

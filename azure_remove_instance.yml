@@ -1,0 +1,17 @@
+- name: Remove instance in Azure
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  collections:
+    - azure.azcollection
+
+  vars:
+    resource_group: Demo
+  
+  tasks:
+  - name: Remove instance
+    azure_rm_virtualmachine:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      state: absent

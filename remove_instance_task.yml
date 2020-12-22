@@ -1,0 +1,6 @@
+- name: Remove instance
+  azure_rm_virtualmachine:
+    resource_group: "{{ hostvars[item].resource_group }}"
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ vm_names }}"

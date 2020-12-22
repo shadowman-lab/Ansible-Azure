@@ -1,0 +1,39 @@
+- name: Compare FunctionApp
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    functionappnames: []
+
+  collections:
+    - azure.azcollection
+
+  tasks: 
+
+    - name: Load stored functionapp
+      include_vars:
+        file: vars/functionapp.yml
+        name: master_functionapp
+
+    - name: Get facts for all function apps
+      azure_rm_functionapp_info:
+        resource_group: Demo
+      register: functionapp
+      
+    - name: Gather functionapp group names
+      set_fact:
+        functionappnames: "{{ functionappnames }} + [ '{{ item.name }}' ]"
+      loop: "{{ functionapp.ansible_info.azure_functionapps }}"
+      when: functionapp != []
+
+    - name: Print difference functionapp
+      debug:
+        msg: "{{ functionappnames | difference(master_functionapp.function_app) }}"
+
+    - name: Set facts to remove the extra functionapp
+      set_fact:
+        functionapp_name: "{{ functionappnames | difference(master_functionapp.function_app) }}"
+
+    - name: Remove extra functionapp
+      include_tasks: remove_functionapp_task.yml
+      when: functionapp_name != []

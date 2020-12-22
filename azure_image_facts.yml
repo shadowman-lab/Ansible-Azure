@@ -1,0 +1,19 @@
+- name: Find available images
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  collections:
+    - azure.azcollection
+
+  vars:
+    publisher: RedHat
+    sku: Stable
+  
+  tasks:
+  - name: Image facts
+    azure_rm_virtualmachineimage_info:
+      location: eastus
+      publisher: "{{ publisher }}"
+      offer: RHEL
+      sku: '7.8'

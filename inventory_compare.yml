@@ -1,0 +1,29 @@
+- name: Compare inventories
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - azure.azcollection
+
+  tasks: 
+
+    - name: Load stored inventory
+      include_vars:
+        file: vars/master_inventory.yml
+        name: loaded_inventory
+
+    - name: Gather names from all current servers
+      set_fact:
+        new_host_names: "{{ groups['all'] | map('extract', hostvars, 'inventory_hostname') | list }}"
+
+    - name: Print difference hosts
+      debug:
+        msg: "{{ new_host_names | difference(loaded_inventory.master_inventory) }}"
+
+    - name: Set facts to remove the extra hosts
+      set_fact:
+        vm_names: "{{ new_host_names | difference(loaded_inventory.master_inventory) }}"
+
+    - name: Remove extra hosts
+      include_tasks: remove_instance_task.yml
+      when: vm_names != []
