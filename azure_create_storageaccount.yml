@@ -8,7 +8,7 @@
   
   tasks:
   - name: Provision Storage Account
-    azure_rm_storageaccount:
+    azure.azcollection.azure_rm_storageaccount:
       resource_group: "{{ resource_group_name }}"
       name: "{{ storage_account_name }}"
       type: Standard_RAGRS

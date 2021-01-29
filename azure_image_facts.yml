@@ -12,7 +12,7 @@
   
   tasks:
   - name: Image facts
-    azure_rm_virtualmachineimage_info:
+    azure.azcollection.azure_rm_virtualmachineimage_info:
       location: eastus
       publisher: "{{ publisher }}"
       offer: RHEL

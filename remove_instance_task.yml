@@ -1,5 +1,5 @@
 - name: Remove instance
-  azure_rm_virtualmachine:
+  azure.azcollection.azure_rm_virtualmachine:
     resource_group: "{{ hostvars[item].resource_group }}"
     name: "{{ item }}"
     state: absent

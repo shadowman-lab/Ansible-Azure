@@ -16,7 +16,7 @@
         name: master_storage
 
     - name: Get facts for all storage accounts
-      azure_rm_storageaccount_info:
+      azure.azcollection.azure_rm_storageaccount_info:
         resource_group: Demo
       register: storageaccount
       

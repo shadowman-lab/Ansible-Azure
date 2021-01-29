@@ -8,7 +8,7 @@
   
   tasks:
   - name: Provision FunctionApp
-    azure_rm_functionapp:
+    azure.azcollection.azure_rm_functionapp:
       resource_group: "{{ resource_group_name }}"
       name: "{{ functionapp_name }}"
       storage_account: "{{ storage_account }}"

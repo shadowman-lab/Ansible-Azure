@@ -16,7 +16,7 @@
         name: master_functionapp
 
     - name: Get facts for all function apps
-      azure_rm_functionapp_info:
+      azure.azcollection.azure_rm_functionapp_info:
         resource_group: Demo
       register: functionapp
       

@@ -16,7 +16,7 @@
         name: master_resources
 
     - name: Get facts for all resource groups
-      azure_rm_resourcegroup_info:
+      azure.azcollection.azure_rm_resourcegroup_info:
       register: resourcegroups
       
     - name: Gather resource group names

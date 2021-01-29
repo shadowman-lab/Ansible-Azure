@@ -11,7 +11,7 @@
   
   tasks:
   - name: Remove Resource Group
-    azure_rm_resourcegroup:
+    azure.azcollection.azure_rm_resourcegroup:
       name: "{{ resource_group_name }}"
       state: absent
       force_delete_nonempty: yes

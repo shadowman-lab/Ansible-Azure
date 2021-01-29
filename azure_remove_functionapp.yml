@@ -9,7 +9,7 @@
   tasks:
 
   - name: Remove Functionapp
-    azure_rm_functionapp:
+    azure.azcollection.azure_rm_functionapp:
       name: "{{ functionapp_name }}"
       state: absent
       resource_group: "{{ resource_group_name }}"

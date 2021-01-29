@@ -9,7 +9,7 @@
   tasks:
 
   - name: Remove Storage account
-    azure_rm_storageaccount:
+    azure.azcollection.azure_rm_storageaccount:
       name: "{{ storage_account_name }}"
       state: absent
       resource_group: "{{ resource_group_name }}"

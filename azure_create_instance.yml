@@ -15,7 +15,7 @@
   
   tasks:
   - name: Provision instance
-    azure_rm_virtualmachine:
+    azure.azcollection.azure_rm_virtualmachine:
       resource_group: "{{ resource_group_name }}"
       name: "{{ vm_name }}"
       storage_account: "{{ storage_account_name }}"
