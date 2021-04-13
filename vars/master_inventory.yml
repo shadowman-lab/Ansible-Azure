@@ -1,1 +1,1 @@
-master_inventory: [VM, unpatchedVM]
+master_inventory: [unpatchedVM2, VM]
