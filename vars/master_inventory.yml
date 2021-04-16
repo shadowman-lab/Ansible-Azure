@@ -1,1 +1,1 @@
-master_inventory: [AnotherVM, VM2, unpatchedVM, FinalVM, tryagainVM, VM1, NewVM]
+master_inventory: [unpatchedVM]
