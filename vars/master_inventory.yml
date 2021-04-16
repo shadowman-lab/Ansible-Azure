@@ -1,1 +1,1 @@
-master_inventory: [unpatchedVMv7, VM]
+master_inventory: [approvedVM, unpatchedVM, VM]
