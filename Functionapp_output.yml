@@ -23,7 +23,7 @@
 
     - name: Sync with Gitrepo      
       git:
-        repo: 'https://github.com/shadowman-lab/Ansible-Demo-Customer.git'
+        repo: 'git@github.com:shadowman-lab/Ansible-Demo-Customer.git'
         dest: /home/git
       delegate_to: tower.shadowman.dev
 
