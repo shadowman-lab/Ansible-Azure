@@ -1,18 +1,16 @@
 ---
 - name: Change facts if running Windows
   ansible.builtin.set_fact:
-    sku: 'windows2016'
-    version: '20.01.10'
-    publisher: "microsoft-ads"
-    offer: "windows-data-science-vm"
-    admin_user: "{{ windowsuser }}"
-    admin_password: "{{ windowspassword }}"
+    sku: 'servercore-2016'
+    version: '0.0.1'
+    publisher: "cloud-infrastructure-services"
+    offer: "servercore-2016"
   when: operating_system is match("Win.*")
 
 - name: Change facts if running RHEL8
   ansible.builtin.set_fact:
-    sku: '8.2'
-    version: '8.2.2021040911'
+    sku: 'rhel-lvm84'
+    version: '8.4.2021053101'
   when: operating_system == "RHEL8"
 
 - name: Provision instance
