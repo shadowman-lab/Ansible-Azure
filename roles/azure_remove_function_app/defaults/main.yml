@@ -1,0 +1,3 @@
+---
+functionapp_names: "{{ functionapp_name.split(',') }}"
+resource_group_name: Demo

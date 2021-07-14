@@ -3,15 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-
-  vars:
-    resource_group: Demo
-  
-  tasks:
-  - name: Remove instance
-    azure.azcollection.azure_rm_virtualmachine:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}"
-      state: absent
+  roles:
+    - azure_remove_vm

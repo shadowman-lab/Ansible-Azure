@@ -1,0 +1,3 @@
+---
+storage_account_names: "{{ storage_account_name.split(',') }}"
+resource_group_name: Demo

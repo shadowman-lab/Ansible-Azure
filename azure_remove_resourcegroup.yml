@@ -3,15 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-
-  vars:
-    location: eastus
-  
-  tasks:
-  - name: Remove Resource Group
-    azure.azcollection.azure_rm_resourcegroup:
-      name: "{{ resource_group_name }}"
-      state: absent
-      force_delete_nonempty: yes
+  roles:
+    - azure_remove_resource_group

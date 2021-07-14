@@ -2,13 +2,6 @@
   hosts: localhost
   connection: local
   gather_facts: false
-
-  collections:
-    - azure.azcollection
   
-  tasks:
-  - name: Provision FunctionApp
-    azure.azcollection.azure_rm_functionapp:
-      resource_group: "{{ resource_group_name }}"
-      name: "{{ functionapp_name }}"
-      storage_account: "{{ storage_account }}"
+  roles:
+    - azure_create_function_app

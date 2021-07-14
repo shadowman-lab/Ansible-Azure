@@ -1,0 +1,25 @@
+---
+- name: Load stored resource groups
+  include_vars:
+    file: vars/storage_account.yml
+    name: master_storage
+
+- name: Get facts for all storage accounts
+  azure.azcollection.azure_rm_storageaccount_info:
+    resource_group: Demo
+  register: storageaccount
+  
+- name: Gather storage account names
+  set_fact:
+    storageaccountnames: "{{ storageaccountnames }} + [ '{{ item.name }}' ]"
+  loop: "{{ storageaccount.storageaccounts }}"
+  when: storageaccount != []
+
+- name: Print difference storage
+  debug:
+    msg: "{{ storageaccountnames | difference(master_storage.storage_account) }}"
+
+- name: Set facts to remove the extra storage accounts
+  set_fact:
+    storage_account_names: "{{ storageaccountnames | difference(master_storage.storage_account) }}"
+

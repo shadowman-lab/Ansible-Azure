@@ -1,0 +1,7 @@
+---
+- name: Image facts
+  azure.azcollection.azure_rm_virtualmachineimage_info:
+    location: eastus
+    publisher: "{{ publisher }}"
+    offer: "{{ offer }}"
+    sku: "{{ sku }}"

@@ -1,6 +1,7 @@
-- name: Remove Resouce Group
+---
+- name: Remove Resource Group
   azure.azcollection.azure_rm_resourcegroup:
     name: "{{ item }}"
     state: absent
     force_delete_nonempty: yes
-  loop: "{{ resource_group_name }}"
+  loop: "{{ resource_group_names }}"

@@ -1,0 +1,6 @@
+---
+- name: Provision Resource Group
+  azure.azcollection.azure_rm_resourcegroup:
+    name: "{{ item }}"
+    location: "{{ location }}"
+  loop: "{{ resource_group_names }}"

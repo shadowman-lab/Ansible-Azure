@@ -2,43 +2,8 @@
   hosts: localhost
   gather_facts: false
 
-  vars:
-    resourcegroupnames: []
-
-  collections:
-    - azure.azcollection
-
-  tasks: 
-
-    - name: Get facts for all resource groups
-      azure.azcollection.azure_rm_resourcegroup_info:
-      register: resourcegroups
-      
-    - name: Gather resource group names
-      set_fact:
-        resourcegroupnames: "{{ resourcegroupnames }} + [ '{{ item.name }}' ]"
-      loop: "{{ resourcegroups.resourcegroups }}"
-      when: resourcegroups != []
-
-    - name: Sync with Gitrepo      
-      git:
-        repo: 'git@github.com:shadowman-lab/Ansible-Demo-Customer.git'
-        dest: /home/git
-      delegate_to: tower.shadowman.dev
-
-    - name: Save Master Resource Groups
-      copy:
-        content: "resource_group: {{ resourcegroupnames }}"
-        dest: "/home/git/vars/resource_group.yml"
-      delegate_to: tower.shadowman.dev
-
-    - name: Update git repo with new master resource group
-      shell: git add * && git commit -m "Adding new master resource group to repo" && git push ||  /bin/true
-      args:
-        chdir: /home/git
-      delegate_to: tower.shadowman.dev
-      register: result
-      changed_when: '"Adding new master resource group to repo" in result.stdout'
+  roles:
+    - azure_output_resource_group
 
     
       

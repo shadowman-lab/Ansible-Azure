@@ -1,0 +1,7 @@
+---
+- name: Provision Storage Account
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: "{{ resource_group_name }}"
+    name: "{{ item }}"
+    type: Standard_RAGRS
+  loop: "{{ storage_account_names }}"

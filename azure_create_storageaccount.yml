@@ -3,12 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-  
-  tasks:
-  - name: Provision Storage Account
-    azure.azcollection.azure_rm_storageaccount:
-      resource_group: "{{ resource_group_name }}"
-      name: "{{ storage_account_name }}"
-      type: Standard_RAGRS
+  roles:
+    - azure_create_storage_account

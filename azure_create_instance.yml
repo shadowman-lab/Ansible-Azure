@@ -3,27 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-
-  vars:
-    publisher: RedHat
-    offer: RHEL
-    version: '7.8.2020050910'
-    sku: '7.8'
-    vm_size: Standard_B1s
-  
-  tasks:
-  - name: Provision instance
-    azure.azcollection.azure_rm_virtualmachine:
-      resource_group: "{{ resource_group_name }}"
-      name: "{{ vm_name }}"
-      storage_account: "{{ storage_account_name }}"
-      admin_username: "{{ admin_username }}"
-      admin_password: "{{ admin_password }}"
-      vm_size: "{{ vm_size }}"
-      image:
-        publisher: "{{ publisher }}"
-        offer: "{{ offer }}"
-        version: "{{ version }}"
-        sku: "{{ sku }}"
+  roles:
+    - azure_create_vm

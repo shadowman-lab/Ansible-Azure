@@ -1,0 +1,3 @@
+---
+location: eastus
+resource_group_names: "{{ resource_group_name.split(',') }}"

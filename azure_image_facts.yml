@@ -3,17 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-
-  vars:
-    publisher: RedHat
-    sku: Stable
-  
-  tasks:
-  - name: Image facts
-    azure.azcollection.azure_rm_virtualmachineimage_info:
-      location: eastus
-      publisher: "{{ publisher }}"
-      offer: RHEL
-      sku: '7.8'
+  roles:
+    - azure_gather_image_facts

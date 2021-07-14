@@ -3,14 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-
-  vars:
-    location: eastus
-  
-  tasks:
-  - name: Provision Resource Group
-    azure.azcollection.azure_rm_resourcegroup:
-      name: "{{ resource_group_name }}"
-      location: "{{ location }}"
+  roles:
+    - azure_create_resource_group

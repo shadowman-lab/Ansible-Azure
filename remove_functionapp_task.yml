@@ -1,6 +1,0 @@
-- name: Remove FunctionApp
-  azure.azcollection.azure_rm_functionapp:
-    name: "{{ item }}"
-    state: absent
-    resource_group: Demo
-  loop: "{{ functionapp_name }}"

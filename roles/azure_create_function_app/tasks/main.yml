@@ -1,0 +1,7 @@
+---
+- name: Provision FunctionApp
+  azure.azcollection.azure_rm_functionapp:
+    resource_group: "{{ resource_group_name }}"
+    name: "{{ item }}"
+    storage_account: "{{ storage_account }}"
+  loop: "{{ functionapp_names }}"

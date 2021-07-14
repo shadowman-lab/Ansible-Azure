@@ -1,0 +1,24 @@
+---
+- name: Gather names from all servers
+  set_fact:
+    host_names: "{{ groups['all'] | map('extract', hostvars, 'inventory_hostname') | list | to_yaml }}"
+
+- name: Sync with Gitrepo      
+  git:
+    repo: 'git@github.com:shadowman-lab/Ansible-Demo-Customer.git'
+    dest: /home/git
+  delegate_to: tower.shadowman.dev
+
+- name: Save Master inventory
+  copy:
+    content: "master_inventory: {{ host_names }}"
+    dest: "/home/git/vars/master_inventory.yml"
+  delegate_to: tower.shadowman.dev
+
+- name: Update git repo with new master inventory
+  shell: git add * && git commit -m "Adding new master inventory to repo" && git push ||  /bin/true
+  args:
+    chdir: /home/git
+  delegate_to: tower.shadowman.dev
+  register: result
+  changed_when: '"Adding new master inventory to repo" in result.stdout'

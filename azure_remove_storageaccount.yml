@@ -3,14 +3,5 @@
   connection: local
   gather_facts: false
 
-  collections:
-    - azure.azcollection
-  
-  tasks:
-
-  - name: Remove Storage account
-    azure.azcollection.azure_rm_storageaccount:
-      name: "{{ storage_account_name }}"
-      state: absent
-      resource_group: "{{ resource_group_name }}"
-      force_delete_nonempty: yes
+  roles:
+    - azure_remove_storage_account
