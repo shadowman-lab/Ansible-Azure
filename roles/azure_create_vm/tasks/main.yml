@@ -3,8 +3,8 @@
   ansible.builtin.set_fact:
     sku: "Win2016_ShadowMan"
     version: "Windows"
-    publisher: "Windows"
-    offer: "Windows"
+    publisher: "MicrosoftWindowsServer"
+    offer: "windowsserver"
     admin_user: "{{ windowsuser }}"
     admin_password: "{{ windowspassword }}"
   when: operating_system is match("Win.*")
