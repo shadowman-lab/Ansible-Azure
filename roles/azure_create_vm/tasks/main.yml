@@ -1,15 +1,5 @@
 ---
-- name: Provision instance
-  azure.azcollection.azure_rm_virtualmachine:
-    resource_group: "{{ resource_group_name }}"
-    name: "{{ item }}"
-    storage_account: "{{ storage_account_name }}"
-    admin_username: "{{ admin_username }}"
-    admin_password: "{{ admin_password }}"
-    vm_size: "{{ vm_size }}"
-    image:
-      publisher: "{{ publisher }}"
-      offer: "{{ offer }}"
-      version: "{{ version }}"
-      sku: "{{ sku }}"
-  loop: "{{ vm_names }}"
+- name: Print
+  debug:
+    msg: "{{ ansible_user }} and {{ ansible_password }}"
+  
