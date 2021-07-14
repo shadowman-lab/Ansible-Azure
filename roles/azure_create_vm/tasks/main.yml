@@ -1,4 +1,18 @@
 ---
+- name: Change facts if running Windows
+  ansible.builtin.set_fact:
+    sku: "Win2016_ShadowMan"
+    version: "Windows"
+    publisher: "Windows"
+    offer: "Windows"
+  when: operating_system is match("Win.*")
+
+- name: Change facts if running RHEL8
+  ansible.builtin.set_fact:
+    sku: '8.2'
+    version: '8.2.2021040911'
+  when: operating_system == "RHEL8"
+
 - name: Provision instance
   azure.azcollection.azure_rm_virtualmachine:
     resource_group: "{{ resource_group_name }}"
