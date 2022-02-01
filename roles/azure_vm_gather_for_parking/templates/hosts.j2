@@ -1,0 +1,35 @@
+{
+  "name": "Pick VM ",
+  "description": "Choose which VMs",
+  "spec": [
+    {
+      "type": "multiselect",
+      "question_name": "Target Instance",
+      "question_description": "Cloud Instances to apply parking exempt tag",
+      "variable": "hosts",
+      "choices": "{% for host in ansible_play_hosts_all %}{% if loop.last %}{{host}}{% else %}{{host}}\n{% endif %}{% endfor %}",
+      "required": true,
+      "default": ""
+    },
+    {
+      "type": "multiplechoice",
+      "question_name": "Parking Exempt",
+      "question_description": "Should instance be exempt from parking?",
+      "variable": "parking_exempt",
+      "choices": "True\nFalse",
+      "required": true,
+      "default": "False"
+    },
+    {
+      "type": "integer",
+      "question_name": "Parking Exempt Days",
+      "question_description": "Number of days instance should be parking exempt",
+      "variable": "parkingexempt_days",
+      "choices": "",
+      "min": 0,
+      "max": 1024,
+      "required": false,
+      "default": ""
+    }
+  ]
+}
