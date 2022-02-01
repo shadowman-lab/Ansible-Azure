@@ -7,17 +7,10 @@
       "question_name": "What VM?",
       "question_description": "What VM",
       "variable": "rollback_date",
-      "choices": "
-{% for host in ansible_play_hosts_all %}
-{% if loop.last %}
-        {{host}}
-{% else %}
-        {{host}}
-{% endif %}
-{% endfor %}
+      "choices": "test\nnew
       ",
       "required": true,
-      "default": "{{ansible_play_hosts_all[-1]}}"
+      "default": ""
     }
   ]
 }
