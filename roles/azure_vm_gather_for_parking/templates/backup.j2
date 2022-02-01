@@ -17,7 +17,7 @@
 {% endfor %}
       ],
       "required": true,
-      "default": "{{ansible_play_hosts_all[0]}}"
+      "default": "{{ansible_play_hosts_all[-1]}}"
     }
   ]
 }
