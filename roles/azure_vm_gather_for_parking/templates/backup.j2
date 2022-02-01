@@ -10,12 +10,12 @@
       "choices": "
 {% for host in ansible_play_hosts_all %}
 {% if loop.last %}
-        {{host}}"
+        {{host}}
 {% else %}
         {{host}}\n
 {% endif %}
 {% endfor %}
-      ],
+      ",
       "required": true,
       "default": "{{ansible_play_hosts_all[-1]}}"
     }
