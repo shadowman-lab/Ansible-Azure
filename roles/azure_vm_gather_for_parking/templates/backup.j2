@@ -1,0 +1,23 @@
+{
+  "name": "Pick VM ",
+  "description": "Choose which VMs",
+  "spec": [
+    {
+      "type": "multiselect",
+      "question_name": "What VM?",
+      "question_description": "What VM",
+      "variable": "rollback_date",
+      "choices": [
+{% for host in ansible_play_hosts_all %}
+{% if loop.last %}
+        "{{host}}"
+{% else %}
+        "{{host}}",
+{% endif %}
+{% endfor %}
+      ],
+      "required": true,
+      "default": "{{ansible_play_hosts_all[0]}}"
+    }
+  ]
+}

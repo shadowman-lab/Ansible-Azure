@@ -1,0 +1,8 @@
+- name: Gather all hosts
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - azure_vm_gather_for_parking
+
+      
