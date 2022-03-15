@@ -3,7 +3,7 @@
   azure.azcollection.azure_rm_virtualmachine_info:
   register: instance_info
 
-- name: set the untagged and missings owners to vars
+- name: Set the un-tagged and missings owner to vars
   ansible.builtin.set_fact:
     untagged_instances: "{{ instance_info.vms | selectattr('tags', 'equalto', {}) | map(attribute='name') | list }}"
     missing_owner: "{{ instance_info.vms | selectattr('tags.owner', 'undefined') | map(attribute='name') | list }}"
