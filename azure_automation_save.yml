@@ -1,0 +1,7 @@
+- name: Check tags and automatically save
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - azure_bespoke

@@ -1,0 +1,32 @@
+---
+- name: Get Azure VM Info
+  azure.azcollection.azure_rm_virtualmachine_info:
+  register: instance_info
+
+- name: set the untagged to a var
+  ansible.builtin.set_fact:
+    untagged_instances: "{{ instance_info.vms | selectattr('tags', 'equalto', {}) | map(attribute='name') | list }}"
+    missing_tag: "{{ instance_info.vms | selectattr('tags.owner', 'undefined') | map(attribute='name') | list }}"
+
+- name: Display untagged instances
+  ansible.builtin.debug:
+    msg: "{{ untagged_instances }}"
+
+- name: Terminate every un-tagged running instance in a region.
+  azure.azcollection.azure_rm_virtualmachine:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ untagged_instances }}"
+  when: untagged_instances | length  > 0
+
+- name: Display instances missing owner
+  ansible.builtin.debug:
+    msg: "{{ missing_tag }}"
+
+- name: Stop every un-tagged running instance in a region.
+  azure.azcollection.azure_rm_virtualmachine:
+    name: "{{ item }}"
+    resource_group: "{{ hostvars[item].resource_group }}"
+    started: no
+  loop: "{{ untagged_instances }}"
+  when: untagged_instances | length  > 0
