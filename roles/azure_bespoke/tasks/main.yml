@@ -24,7 +24,7 @@
   ansible.builtin.debug:
     msg: "{{ missing_owner }}"
 
-- name: Stop every non owner running instance
+- name: Stop every non owner instance
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item }}"
     resource_group: "{{ hostvars[item].resource_group }}"
