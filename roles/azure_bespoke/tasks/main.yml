@@ -15,8 +15,8 @@
 - name: Terminate every un-tagged instance
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item }}"
-    state: absent
     resource_group: "{{ hostvars[item].resource_group }}"
+    state: absent
   loop: "{{ untagged_instances }}"
   when: untagged_instances | length  > 0
 
