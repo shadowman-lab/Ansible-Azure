@@ -1,17 +1,17 @@
 ---
 - name: Load stored inventory
-  include_vars:
+  ansible.builtin.include_vars:
     file: vars/master_inventory.yml
     name: loaded_inventory
 
 - name: Gather names from all current servers
-  set_fact:
+  ansible.builtin.set_fact:
     new_host_names: "{{ groups['all'] | map('extract', hostvars, 'inventory_hostname') | list }}"
 
 - name: Print difference hosts
-  debug:
+  ansible.builtin.debug:
     msg: "{{ new_host_names | difference(loaded_inventory.master_inventory) }}"
 
 - name: Set facts to remove the extra hosts
-  set_fact:
+  ansible.builtin.set_fact:
     vm_names: "{{ new_host_names | difference(loaded_inventory.master_inventory) }}"

@@ -4,25 +4,29 @@
   register: resourcegroups
   
 - name: Gather resource group names
-  set_fact:
+  ansible.builtin.set_fact:
     resourcegroupnames: "{{ resourcegroupnames }} + [ '{{ item.name }}' ]"
   loop: "{{ resourcegroups.resourcegroups }}"
   when: resourcegroups != []
 
 - name: Sync with Gitrepo      
-  git:
+  ansible.builtin.git:
     repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
     dest: /home/git
+    version: master
   delegate_to: tower.shadowman.dev
 
 - name: Save Master Resource Groups
-  copy:
+  ansible.builtin.copy:
     content: "resource_group: {{ resourcegroupnames }}"
     dest: "/home/git/vars/resource_group.yml"
+    owner: root
+    group: root
+    mode: '0644'
   delegate_to: tower.shadowman.dev
 
 - name: Update git repo with new master resource group
-  shell: git add * && git commit -m "Adding new master resource group to repo" && git push ||  /bin/true
+  ansible.builtin.shell: git add * && git commit -m "Adding new master resource group to repo" && git push ||  /bin/true
   args:
     chdir: /home/git
   delegate_to: tower.shadowman.dev

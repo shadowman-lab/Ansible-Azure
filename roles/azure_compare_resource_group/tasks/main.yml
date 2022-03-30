@@ -1,6 +1,6 @@
 ---
 - name: Load stored resource groups
-  include_vars:
+  ansible.builtin.include_vars:
     file: vars/resource_group.yml
     name: master_resources
 
@@ -9,14 +9,14 @@
   register: resourcegroups
   
 - name: Gather resource group names
-  set_fact:
+  ansible.builtin.set_fact:
     resourcegroupnames: "{{ resourcegroupnames }} + [ '{{ item.name }}' ]"
   loop: "{{ resourcegroups.resourcegroups }}"
 
 - name: Print difference resources
-  debug:
+  ansible.builtin.debug:
     msg: "{{ resourcegroupnames | difference(master_resources.resource_group) }}"
 
 - name: Set facts to remove the extra resource groups
-  set_fact:
+  ansible.builtin.set_fact:
     resource_group_names: "{{ resourcegroupnames | difference(master_resources.resource_group) }}"

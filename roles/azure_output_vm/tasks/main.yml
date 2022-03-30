@@ -1,22 +1,26 @@
 ---
 - name: Gather names from all servers
-  set_fact:
+  ansible.builtin.set_fact:
     host_names: "{{ groups['all'] | map('extract', hostvars, 'inventory_hostname') | list | to_yaml }}"
 
 - name: Sync with Gitrepo      
-  git:
+  ansible.builtin.git:
     repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
     dest: /home/git
+    version: master
   delegate_to: tower.shadowman.dev
 
 - name: Save Master inventory
-  copy:
+  ansible.builtin.copy:
     content: "master_inventory: {{ host_names }}"
     dest: "/home/git/vars/master_inventory.yml"
+    owner: root
+    group: root
+    mode: '0644'
   delegate_to: tower.shadowman.dev
 
 - name: Update git repo with new master inventory
-  shell: git add * && git commit -m "Adding new master inventory to repo" && git push ||  /bin/true
+  ansible.builtin.shell: git add * && git commit -m "Adding new master inventory to repo" && git push ||  /bin/true
   args:
     chdir: /home/git
   delegate_to: tower.shadowman.dev

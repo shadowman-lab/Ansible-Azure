@@ -10,15 +10,15 @@
   register: functionapp
   
 - name: Gather functionapp group names
-  set_fact:
+  ansible.builtin.set_fact:
     functionappnames: "{{ functionappnames }} + [ '{{ item.name }}' ]"
   loop: "{{ functionapp.ansible_info.azure_functionapps }}"
   when: functionapp != []
 
 - name: Print difference functionapp
-  debug:
+  ansible.builtin.debug:
     msg: "{{ functionappnames | difference(master_functionapp.function_app) }}"
 
 - name: Set facts to remove the extra functionapp
-  set_fact:
+  ansible.builtin.set_fact:
     functionapp_names: "{{ functionappnames | difference(master_functionapp.function_app) }}"
