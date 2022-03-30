@@ -2,13 +2,13 @@
   hosts: localhost
   gather_facts: false
 
-  tasks: 
+  tasks:
 
     - name: Inventory compare
-      include_role: 
+      include_role:
         name: azure_compare_vm
 
     - name: Remove extra hosts
-      include_role: 
+      include_role:
         name: azure_remove_vm
       when: vm_names != []

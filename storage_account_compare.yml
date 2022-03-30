@@ -2,13 +2,13 @@
   hosts: localhost
   gather_facts: false
 
-  tasks: 
+  tasks:
 
     - name: Storage Account compare
-      include_role: 
+      include_role:
         name: azure_compare_storage_account
-        
+
     - name: Remove extra storage
-      include_role: 
+      include_role:
         name: azure_remove_storage_account
       when: storage_account_names != []

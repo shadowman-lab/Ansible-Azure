@@ -2,13 +2,13 @@
   hosts: localhost
   gather_facts: false
 
-  tasks: 
-  
+  tasks:
+
     - name: Resource Group compare
-      include_role: 
+      include_role:
         name: azure_compare_resource_group
 
     - name: Remove extra resources
-      include_role: 
+      include_role:
         name: azure_remove_resource_group
       when: resource_group_names != []

@@ -2,13 +2,13 @@
   hosts: localhost
   gather_facts: false
 
-  tasks: 
+  tasks:
 
     - name: Functionapp compare
-      include_role: 
+      include_role:
         name: azure_compare_function_app
 
     - name: Remove extra functionapp
-      include_role: 
+      include_role:
         name: azure_remove_fuction_app
       when: functionapp_names != []

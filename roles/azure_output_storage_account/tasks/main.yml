@@ -3,14 +3,14 @@
   azure.azcollection.azure_rm_storageaccount_info:
     resource_group: Demo
   register: storageaccount
-  
+
 - name: Gather storage account names
   ansible.builtin.set_fact:
     storageaccountnames: "{{ storageaccountnames }} + [ '{{ item.name }}' ]"
   loop: "{{ storageaccount.storageaccounts }}"
   when: storageaccount != []
 
-- name: Sync with Gitrepo      
+- name: Sync with Gitrepo
   ansible.builtin.git:
     repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
     dest: /home/git

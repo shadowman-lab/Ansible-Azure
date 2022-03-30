@@ -4,5 +4,5 @@
     name: "{{ item }}"
     state: absent
     resource_group: "{{ resource_group_name }}"
-    force_delete_nonempty: yes
+    force_delete_nonempty: true
   loop: "{{ storage_account_names }}"

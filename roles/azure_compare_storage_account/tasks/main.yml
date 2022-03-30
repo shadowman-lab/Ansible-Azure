@@ -8,7 +8,7 @@
   azure.azcollection.azure_rm_storageaccount_info:
     resource_group: Demo
   register: storageaccount
-  
+
 - name: Gather storage account names
   ansible.builtin.set_fact:
     storageaccountnames: "{{ storageaccountnames }} + [ '{{ item.name }}' ]"

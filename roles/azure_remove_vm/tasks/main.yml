@@ -5,4 +5,3 @@
     name: "{{ item }}"
     state: absent
   loop: "{{ vm_names }}"
-  

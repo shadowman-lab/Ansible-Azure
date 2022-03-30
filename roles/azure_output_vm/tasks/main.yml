@@ -3,7 +3,7 @@
   ansible.builtin.set_fact:
     host_names: "{{ groups['all'] | map('extract', hostvars, 'inventory_hostname') | list | to_yaml }}"
 
-- name: Sync with Gitrepo      
+- name: Sync with Gitrepo
   ansible.builtin.git:
     repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
     dest: /home/git

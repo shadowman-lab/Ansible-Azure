@@ -3,5 +3,5 @@
   azure.azcollection.azure_rm_resourcegroup:
     name: "{{ item }}"
     state: absent
-    force_delete_nonempty: yes
+    force_delete_nonempty: true
   loop: "{{ resource_group_names }}"

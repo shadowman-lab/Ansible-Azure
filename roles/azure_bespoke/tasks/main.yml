@@ -28,6 +28,6 @@
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item }}"
     resource_group: "{{ hostvars[item].resource_group }}"
-    started: no
+    started: false
   loop: "{{ missing_owner }}"
   when: missing_owner | length  > 0

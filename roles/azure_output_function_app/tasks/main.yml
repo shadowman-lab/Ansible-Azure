@@ -10,7 +10,7 @@
   loop: "{{ functionapp.ansible_info.azure_functionapps }}"
   when: functionapp != []
 
-- name: Sync with Gitrepo      
+- name: Sync with Gitrepo
   ansible.builtin.git:
     repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
     dest: /home/git
