@@ -26,7 +26,7 @@
       - 443
     accept_terms: true
     image:
-      publisher: "{{ publisher }}"
+      publisher: "{{ publisherimage }}"
       offer: "{{ offer }}"
       version: "{{ version }}"
       sku: "{{ sku }}"
