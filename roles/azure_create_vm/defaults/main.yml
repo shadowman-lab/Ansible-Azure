@@ -1,6 +1,5 @@
 ---
 publisher: RedHat
-publisherimage: redhat
 offer: rhel-byos
 version: "latest"
 sku: 'rhel-lvm79'
