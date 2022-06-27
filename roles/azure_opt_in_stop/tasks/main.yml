@@ -9,6 +9,6 @@
 - name: Stop instances
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item.name }}"
-    resource_group: "{{ hostvars[item].resource_group }}"
+    resource_group: "{{ item.resource_group }}"
     started: false
   loop: "{{ instance_info.vms }}"
