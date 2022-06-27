@@ -1,5 +1,5 @@
 ---
-- name: Build the Schedule for Stopping Azure instances for {{ env }}
+- name: Build the Schedule for Stopping Azure instances for {{ owner }} in {{ env }}
   ansible.controller.schedule:
     name: Park Azure instances for {{ env }}
     state: present
@@ -13,7 +13,7 @@
     controller_password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
     controller_host: "{{ lookup('env', 'TOWER_HOST') }}"
 
-- name: Build the Schedule for Starting Azure instances for {{ env }}
+- name: Build the Schedule for Starting Azure instances for {{ owner }} in {{ env }}
   ansible.controller.schedule:
     name: UnPark Azure instances for {{ env }}
     state: present
