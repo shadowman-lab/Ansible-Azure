@@ -1,7 +1,7 @@
 ---
 - name: Build the Schedule for Stopping Azure instances for {{ owner }} in {{ env }}
   ansible.controller.schedule:
-    name: Park Azure instances for {{ env }}
+    name: Park Azure instances for {{ owner }} in {{ env }}
     state: present
     unified_job_template: AzureParking-Stop
     rrule: "{{ query('ansible.controller.schedule_rrule', frequency, start_date=stop_date_time,timezone='GMT',every=repetition | int) }}"
@@ -15,7 +15,7 @@
 
 - name: Build the Schedule for Starting Azure instances for {{ owner }} in {{ env }}
   ansible.controller.schedule:
-    name: UnPark Azure instances for {{ env }}
+    name: UnPark Azure instances for {{ owner }} in {{ env }}
     state: present
     unified_job_template: AzureParking-Start
     rrule: "{{ query('ansible.controller.schedule_rrule', frequency, start_date=start_date_time,timezone='GMT',every=repetition | int) }}"
