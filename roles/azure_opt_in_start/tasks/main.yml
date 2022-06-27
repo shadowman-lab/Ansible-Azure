@@ -2,7 +2,7 @@
 - name: Get Azure VM Info with desired tag
   azure.azcollection.azure_rm_virtualmachine_info:
     tags:
-      - environment:{{ environment }}
+      - environment:{{ env }}
       - owner:{{ owner }}
   register: instance_info
 

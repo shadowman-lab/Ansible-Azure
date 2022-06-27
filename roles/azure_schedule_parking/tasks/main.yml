@@ -1,13 +1,13 @@
 ---
 - name: Build the Schedule for Stopping Azure instances for {{ environment }}
   ansible.controller.schedule:
-    name: Park Azure instances for {{ environment }}
+    name: Park Azure instances for {{ env }}
     state: present
     unified_job_template: AzureParking-Stop
     rrule: "{{ query('ansible.controller.schedule_rrule', frequency, start_date=stop_date_time,timezone='GMT',every=repetition | int) }}"
     extra_data:
-      newowner: "{{ owner }}"
-      newenvironment: "{{ environment }}"
+      owner: "{{ owner }}"
+      env: "{{ env }}"
     validate_certs: false
     controller_username: "{{ lookup('env', 'TOWER_USERNAME') }}"
     controller_password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
@@ -15,13 +15,13 @@
 
 - name: Build the Schedule for Starting Azure instances for {{ environment }}
   ansible.controller.schedule:
-    name: UnPark Azure instances for {{ environment }}
+    name: UnPark Azure instances for {{ env }}
     state: present
     unified_job_template: AzureParking-Start
     rrule: "{{ query('ansible.controller.schedule_rrule', frequency, start_date=stop_date_time,timezone='GMT',every=repetition | int) }}"
     extra_data:
       owner: "{{ owner }}"
-      environment: "{{ environment }}"
+      env: "{{ env }}"
     validate_certs: false
     controller_username: "{{ lookup('env', 'TOWER_USERNAME') }}"
     controller_password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
