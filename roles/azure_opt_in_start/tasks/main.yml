@@ -11,3 +11,5 @@
     name: "{{ item.name }}"
     resource_group: "{{ item.resource_group }}"
   loop: "{{ instance_info.vms }}"
+  loop_control:
+    label: "{{ item.name }}"
