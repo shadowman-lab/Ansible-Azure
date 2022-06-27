@@ -1,0 +1,7 @@
+- name: Azure Stop VMs
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - azure_opt_in_stop
