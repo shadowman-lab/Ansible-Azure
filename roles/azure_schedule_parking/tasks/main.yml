@@ -18,7 +18,7 @@
     name: UnPark Azure instances for {{ env }}
     state: present
     unified_job_template: AzureParking-Start
-    rrule: "{{ query('ansible.controller.schedule_rrule', frequency, start_date=stop_date_time,timezone='GMT',every=repetition | int) }}"
+    rrule: "{{ query('ansible.controller.schedule_rrule', frequency, start_date=start_date_time,timezone='GMT',every=repetition | int) }}"
     extra_data:
       owner: "{{ owner }}"
       env: "{{ env }}"
