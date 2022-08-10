@@ -1,0 +1,4 @@
+---
+azure_savings_perform_savings: true
+azure_savings_untagged: true
+azure_savings_no_owner: true
