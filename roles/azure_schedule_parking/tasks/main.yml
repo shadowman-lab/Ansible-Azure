@@ -8,10 +8,6 @@
     extra_data:
       owner: "{{ owner }}"
       env: "{{ env }}"
-    validate_certs: false
-    controller_username: "{{ lookup('env', 'TOWER_USERNAME') }}"
-    controller_password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
-    controller_host: "{{ lookup('env', 'TOWER_HOST') }}"
 
 - name: Build the Schedule for Starting Azure instances for {{ owner }} in {{ env }}
   ansible.controller.schedule:
@@ -22,7 +18,3 @@
     extra_data:
       owner: "{{ owner }}"
       env: "{{ env }}"
-    validate_certs: false
-    controller_username: "{{ lookup('env', 'TOWER_USERNAME') }}"
-    controller_password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
-    controller_host: "{{ lookup('env', 'TOWER_HOST') }}"
