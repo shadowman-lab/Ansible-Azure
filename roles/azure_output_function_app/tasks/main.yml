@@ -3,7 +3,7 @@
   azure.azcollection.azure_rm_functionapp_info:
     resource_group: Demo
   register: functionapp
-  
+
 - name: Gather functionapp group names
   ansible.builtin.set_fact:
     functionappnames: "{{ functionappnames }} + [ '{{ item.name }}' ]"

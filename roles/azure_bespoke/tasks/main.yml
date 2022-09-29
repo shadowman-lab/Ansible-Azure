@@ -8,7 +8,7 @@
     untagged_name: "{{ instance_info.vms | rejectattr('tags') | map(attribute='name') | list }}"
     untagged_resource_group: "{{ instance_info.vms | rejectattr('tags') | map(attribute='resource_group') | list }}"
   when: azure_savings_untagged
-    
+
 - name: Set the missing owner to vars
   ansible.builtin.set_fact:
     missing_owner_name: "{{ instance_info.vms | selectattr('tags.owner', 'undefined') | map(attribute='name') | list }}"
@@ -25,8 +25,8 @@
     name: "{{ item.0 }}"
     resource_group: "{{ item.1 }}"
     started: false
-  loop: "{{ missing_owner_name|zip(missing_owner_resource_group)|list }}"
-  when: 
+  loop: "{{ missing_owner_name | zip(missing_owner_resource_group) | list }}"
+  when:
     - missing_owner | default('[]') | length  > 0
     - azure_savings_perform_savings
     - azure_savings_no_owner
@@ -41,8 +41,8 @@
     name: "{{ item.0 }}"
     resource_group: "{{ item.1 }}"
     state: absent
-  loop: "{{ untagged_name|zip(untagged_resource_group)|list }}"
-  when: 
+  loop: "{{ untagged_name | zip(untagged_resource_group) | list }}"
+  when:
     - untagged_instances | default('[]') | length  > 0
     - azure_savings_perform_savings
     - azure_savings_untagged
