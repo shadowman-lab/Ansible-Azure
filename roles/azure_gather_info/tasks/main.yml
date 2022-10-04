@@ -6,3 +6,7 @@
 - name: Retrieve VM information
   azure.azcollection.azure_rm_virtualmachine_info:
   register: vm_info
+
+- name: Retrieve Network Interface information
+  azure.azcollection.azure_rm_networkinterface_info:
+  register: interface_info
