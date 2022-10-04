@@ -42,11 +42,11 @@ collapsible: true
               <tbody>
                 <tr>
                   <td>Azure Client ID</td>
-                  <td class="sub_net_info">{{ AZURE_CLIENT_ID | default('unknown') }}</td>
+                  <td class="sub_net_info">{{ azure_client | default('unknown') }}</td>
                 </tr>
                 <tr>
                   <td>Subscription ID</td>
-                  <td class="sub_net_info">{{ AZURE_SUBSCRIPTION_ID | default('unknown') }}</td>
+                  <td class="sub_net_info">{{ azure_sub_id | default('unknown') }}</td>
                 </tr>
               </tbody>
               </table>

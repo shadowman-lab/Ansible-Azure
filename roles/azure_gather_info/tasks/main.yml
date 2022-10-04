@@ -3,10 +3,11 @@
   azure.azcollection.azure_rm_virtualnetwork_info:
   register: vnet_info
 
-- name: Retrieve VM information
-  azure.azcollection.azure_rm_virtualmachine_info:
-  register: vm_info
-
 - name: Retrieve Network Interface information
   azure.azcollection.azure_rm_networkinterface_info:
   register: interface_info
+
+- name: Set Azure information
+  ansible.builtin.set_fact:
+    azure_sub_id: "{{ lookup('ansible.builtin.env', 'AZURE_SUBSCRIPTION_ID') }}"
+    azure_client: "{{ lookup('ansible.builtin.env', 'AZURE_CLIENT_ID') }}"
