@@ -9,7 +9,7 @@
 
     - name: Build the report
       ansible.builtin.include_role:
-        name: build_report_cloud
+        name: shadowman.reports.build_report_cloud
         apply:
           delegate_to: report.shadowman.dev
           run_once: true
