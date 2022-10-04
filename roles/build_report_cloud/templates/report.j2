@@ -41,16 +41,12 @@ collapsible: true
               <table class="net_info">
               <tbody>
                 <tr>
-                  <td>Azure user</td>
-                  <td class="sub_net_info">{{ aws_user | default('unknown') }}</td>
+                  <td>Azure Client ID</td>
+                  <td class="sub_net_info">{{ AZURE_CLIENT_ID | default('unknown') }}</td>
                 </tr>
                 <tr>
-                  <td>Account ID</td>
-                  <td class="sub_net_info">{{ whoami.account | default('unknown') }}</td>
-                </tr>
-                <tr>
-                  <td>Account Alias</td>
-                  <td class="sub_net_info">{{ whoami.account_alias | default ('unknown')}}</td>
+                  <td>Subscription ID</td>
+                  <td class="sub_net_info">{{ AZURE_SUBSCRIPTION_ID | default('unknown') }}</td>
                 </tr>
               </tbody>
               </table>
