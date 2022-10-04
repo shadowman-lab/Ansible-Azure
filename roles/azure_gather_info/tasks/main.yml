@@ -1,0 +1,8 @@
+---
+- name: Retrieve VNet information
+  azure.azcollection.azure_rm_virtualnetwork_info:
+  register: vnet_info
+
+- name: Retrieve VM information
+  azure.azcollection.azure_rm_virtualmachine_info:
+  register: vm_info
