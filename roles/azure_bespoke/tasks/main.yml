@@ -3,3 +3,9 @@
   azure.azcollection.azure_rm_virtualmachine_info:
     tags:
       - owner
+  register: azurevms
+
+- name: debug
+  ansible.builtin.debug:
+    msg: "{{ item.name }} {{ item.tags.owner }}"
+  loop: "{{ azurevms.vms }}"
