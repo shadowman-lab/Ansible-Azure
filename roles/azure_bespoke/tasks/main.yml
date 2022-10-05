@@ -1,11 +1,48 @@
 ---
 - name: Get Azure VM Info
   azure.azcollection.azure_rm_virtualmachine_info:
-    tags:
-      - owner
-  register: azurevms
+  register: instance_info
 
-- name: debug
+- name: Set the un-tagged to vars
+  ansible.builtin.set_fact:
+    untagged_name: "{{ instance_info.vms | rejectattr('tags') | map(attribute='name') | list }}"
+    untagged_resource_group: "{{ instance_info.vms | rejectattr('tags') | map(attribute='resource_group') | list }}"
+  when: azure_savings_untagged
+
+- name: Set the missing owner to vars
+  ansible.builtin.set_fact:
+    missing_owner_name: "{{ instance_info.vms | selectattr('tags.owner', 'undefined') | map(attribute='name') | list }}"
+    missing_owner_resource_group: "{{ instance_info.vms | selectattr('tags.owner', 'undefined') | map(attribute='resource_group') | list }}"
+  when: azure_savings_no_owner
+
+- name: Display instances missing owner
   ansible.builtin.debug:
-    msg: "{{ item.name }} {{ item.tags.owner }}"
-  loop: "{{ azurevms.vms }}"
+    msg: "{{ missing_owner_name }}"
+  when: azure_savings_no_owner
+
+- name: Stop every non owner instance
+  azure.azcollection.azure_rm_virtualmachine:
+    name: "{{ item.0 }}"
+    resource_group: "{{ item.1 }}"
+    started: false
+  loop: "{{ missing_owner_name | zip(missing_owner_resource_group) | list }}"
+  when:
+    - missing_owner | default('[]') | length  > 0
+    - azure_savings_perform_savings
+    - azure_savings_no_owner
+
+- name: Display un-tagged instances
+  ansible.builtin.debug:
+    msg: "{{ untagged_name }}"
+  when: azure_savings_untagged
+
+- name: Terminate every un-tagged instance
+  azure.azcollection.azure_rm_virtualmachine:
+    name: "{{ item.0 }}"
+    resource_group: "{{ item.1 }}"
+    state: absent
+  loop: "{{ untagged_name | zip(untagged_resource_group) | list }}"
+  when:
+    - untagged_instances | default('[]') | length  > 0
+    - azure_savings_perform_savings
+    - azure_savings_untagged
