@@ -10,6 +10,7 @@
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item.name }}"
     resource_group: "{{ item.resource_group }}"
+    started: true
   loop: "{{ instance_info.vms }}"
   loop_control:
     label: "{{ item.name }}"
