@@ -1,0 +1,33 @@
+- name: Get list of all regions
+  azure.azcollection.azure_rm_resource_info:
+    url: "/locations"
+    api_version: "2020-01-01"
+  register: all_regions
+
+- name: Print var all_regions
+  ansible.builtin.debug:
+    msg: "{{ all_regions }}"
+
+- name: Get all networks
+  azure.azcollection.azure_rm_virtualnetwork_info:
+  register: azure_networks
+
+- name: Print azure_networks
+  ansible.builtin.debug:
+    msg: "{{ azure_networks }}"
+
+- name: Get all vms
+  azure.azcollection.azure_rm_virtualmachine_info:
+  register: azure_vms
+
+- name: Orint azure_vms
+  ansible.builtin.debug:
+    msg: "{{ azure_vms }}"
+
+- name: Get facts for network interfaces
+  azure.azcollection.azure_rm_networkinterface_info:
+  register: network_interfaces
+
+- name: Print azure_vms
+  ansible.builtin.debug:
+    msg: "{{ network_interfaces }}"
