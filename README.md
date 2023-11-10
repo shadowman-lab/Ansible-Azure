@@ -1,2 +1,2 @@
-# Ansible-Demo
-Demo for Cloud Platform Host and Resource Management
+# Ansible-Azure
+Repo for Azure Cloud Platform Host and Resource Management
