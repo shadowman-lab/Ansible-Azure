@@ -1,3 +1,4 @@
+---
 - name: Provision instance in Azure
   hosts: localhost
   connection: local

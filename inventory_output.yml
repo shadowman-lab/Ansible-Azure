@@ -1,3 +1,4 @@
+---
 - name: Gather all hosts
   hosts: localhost
   gather_facts: false

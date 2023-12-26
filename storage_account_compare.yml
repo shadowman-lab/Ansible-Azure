@@ -1,9 +1,9 @@
+---
 - name: Compare Storage Account
   hosts: localhost
   gather_facts: false
 
   tasks:
-
     - name: Storage Account compare
       include_role:
         name: azure_compare_storage_account

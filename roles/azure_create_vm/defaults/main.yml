@@ -1,8 +1,8 @@
 ---
 publisher: RedHat
 offer: rhel-byos
-version: "latest"
-sku: 'rhel-lvm79'
+version: latest
+sku: rhel-lvm79
 vm_size: Standard_B1s
 vm_names: "{{ vm_name.split(',') }}"
 resource_group_name: Demo

@@ -1,3 +1,4 @@
+---
 - name: Remove instance in Azure
   hosts: localhost
   connection: local

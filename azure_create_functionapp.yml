@@ -1,3 +1,4 @@
+---
 - name: Provision Functionapp in Azure
   hosts: localhost
   connection: local
