@@ -5,7 +5,7 @@
 
 - name: Sync with Gitrepo
   ansible.builtin.git:
-    repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
+    repo: git@github.com:shadowman-lab/Ansible-Azure.git
     dest: /home/git
     version: master
   delegate_to: tower.shadowman.dev
@@ -13,10 +13,10 @@
 - name: Save Master inventory
   ansible.builtin.copy:
     content: "master_inventory: {{ host_names }}"
-    dest: "/home/git/vars/master_inventory.yml"
+    dest: /home/git/vars/master_inventory.yml
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   delegate_to: tower.shadowman.dev
 
 - name: Update git repo with new master inventory

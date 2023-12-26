@@ -1,9 +1,9 @@
+---
 - name: Compare FunctionApp
   hosts: localhost
   gather_facts: false
 
   tasks:
-
     - name: Functionapp compare
       include_role:
         name: azure_compare_function_app

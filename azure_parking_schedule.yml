@@ -1,3 +1,4 @@
+---
 - name: Azure Scheduler for Parking
   hosts: localhost
   connection: local

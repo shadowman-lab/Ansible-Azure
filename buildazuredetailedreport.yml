@@ -2,7 +2,6 @@
 - name: Create Azure Detailed Report
   hosts: localhost
   tasks:
-
     - name: Gather Azure Detailed info
       ansible.builtin.include_role:
         name: azure_retrieve_info

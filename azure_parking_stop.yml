@@ -1,3 +1,4 @@
+---
 - name: Azure Stop VMs
   hosts: localhost
   connection: local

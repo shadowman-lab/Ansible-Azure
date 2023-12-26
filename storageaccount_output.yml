@@ -1,3 +1,4 @@
+---
 - name: Gather Storage Accounts
   hosts: localhost
   gather_facts: false

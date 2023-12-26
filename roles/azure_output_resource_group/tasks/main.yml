@@ -11,7 +11,7 @@
 
 - name: Sync with Gitrepo
   ansible.builtin.git:
-    repo: 'git@github.com:shadowman-lab/Ansible-Azure.git'
+    repo: git@github.com:shadowman-lab/Ansible-Azure.git
     dest: /home/git
     version: master
   delegate_to: tower.shadowman.dev
@@ -19,10 +19,10 @@
 - name: Save Master Resource Groups
   ansible.builtin.copy:
     content: "resource_group: {{ resourcegroupnames }}"
-    dest: "/home/git/vars/resource_group.yml"
+    dest: /home/git/vars/resource_group.yml
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   delegate_to: tower.shadowman.dev
 
 - name: Update git repo with new master resource group

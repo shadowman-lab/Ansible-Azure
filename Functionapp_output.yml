@@ -1,3 +1,4 @@
+---
 - name: Gather Function App
   hosts: localhost
   gather_facts: false

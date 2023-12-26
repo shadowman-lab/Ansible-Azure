@@ -1,6 +1,7 @@
+---
 - name: Get list of all regions
   azure.azcollection.azure_rm_resource_info:
-    url: "/locations"
+    url: /locations
     api_version: "2020-01-01"
   register: all_regions
 

@@ -1,3 +1,4 @@
+---
 - name: Find available images
   hosts: localhost
   connection: local

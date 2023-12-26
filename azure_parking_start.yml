@@ -1,3 +1,4 @@
+---
 - name: Azure Start VMs
   hosts: localhost
   connection: local

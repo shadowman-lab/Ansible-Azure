@@ -1,3 +1,4 @@
+---
 - name: Remove Storage Account in Azure
   hosts: localhost
   connection: local

@@ -1,9 +1,9 @@
+---
 - name: Compare Resource Groups
   hosts: localhost
   gather_facts: false
 
   tasks:
-
     - name: Resource Group compare
       include_role:
         name: azure_compare_resource_group

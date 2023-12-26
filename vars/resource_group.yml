@@ -1,1 +1,2 @@
-resource_group: ['redhat', 'NetworkWatcherRG', 'Demo', 'Test']
+---
+resource_group: [redhat, NetworkWatcherRG, Demo, Test]

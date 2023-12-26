@@ -1,3 +1,4 @@
+---
 - name: Check tags and automatically save
   hosts: localhost
   connection: local

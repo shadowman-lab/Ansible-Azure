@@ -1,9 +1,9 @@
+---
 - name: Compare inventories
   hosts: localhost
   gather_facts: false
 
   tasks:
-
     - name: Inventory compare
       include_role:
         name: azure_compare_vm

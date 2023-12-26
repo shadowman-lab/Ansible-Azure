@@ -1,14 +1,14 @@
 ---
 - name: Create Parking Exempt Status Job with Hosts
   ansible.controller.job_template:
-    name: "kcolby - Cloud Parking - Set Parking Exempt Status New"
-    job_type: "run"
-    inventory: "Azure Inventory"
-    project: "kcolby - automate-infrastructure-optimization"
-    playbook: "set_parkingexempt.yml"
+    name: kcolby - Cloud Parking - Set Parking Exempt Status New
+    job_type: run
+    inventory: Azure Inventory
+    project: kcolby - automate-infrastructure-optimization
+    playbook: set_parkingexempt.yml
     credentials:
-      - "Azure Playbook Credentials"
-      - "Cloud_Parking"
+      - Azure Playbook Credentials
+      - Cloud_Parking
     survey_enabled: true
     concurrent_jobs_enabled: true
     survey_spec: "{{ lookup('template', 'templates/hosts.j2') }}"
