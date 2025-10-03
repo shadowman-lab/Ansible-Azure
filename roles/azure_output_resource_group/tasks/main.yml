@@ -14,7 +14,7 @@
     repo: git@github.com:shadowman-lab/Ansible-Azure.git
     dest: /home/git
     version: master
-  delegate_to: tower.shadowman.dev
+  delegate_to: aap.shadowman.dev
 
 - name: Save Master Resource Groups
   ansible.builtin.copy:
@@ -23,12 +23,12 @@
     owner: root
     group: root
     mode: "0644"
-  delegate_to: tower.shadowman.dev
+  delegate_to: aap.shadowman.dev
 
 - name: Update git repo with new master resource group
   ansible.builtin.shell: git add * && git commit -m "Adding new master resource group to repo" && git push ||  /bin/true
   args:
     chdir: /home/git
-  delegate_to: tower.shadowman.dev
+  delegate_to: aap.shadowman.dev
   register: result
   changed_when: '"Adding new master resource group to repo" in result.stdout'
