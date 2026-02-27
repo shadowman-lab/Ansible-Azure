@@ -2,6 +2,7 @@ include README.md
 include *.yml
 include .DS_Store
 include .vscode/extensions.json
+include .code-workspace
 include devfile.yaml
 recursive-exclude .git *
 recursive-include collections *.yml
